@@ -1,7 +1,7 @@
 
 import { useDispatch,useSelector } from "react-redux";
 import { Label, Input, Form } from './ContactForm.styled';
-import { addContacts } from "redux/operations";
+import { addContact } from "redux/operations";
 import { selectContacts } from "redux/selectors";
 import Notiflix from 'notiflix';
 export const ContactForm = () => {
@@ -15,8 +15,8 @@ export const ContactForm = () => {
     
   contacts.contacts.filter(contact => contact.name.toLowerCase()===(form.elements.name.value.toLowerCase())).length>0 ?
     Notiflix.Notify.failure(`${form.elements.name.value} is already in phonebook`):  
-    dispatch(addContacts({name:form.elements.name.value,phone:form.elements.number.value}));
-    form.reset();
+    dispatch(addContact({name:form.elements.name.value,number:form.elements.number.value})) &&  form.reset();
+   
   };
 
   return (
