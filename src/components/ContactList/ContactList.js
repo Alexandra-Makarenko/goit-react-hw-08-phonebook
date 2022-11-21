@@ -1,29 +1,29 @@
 // import PropTypes from 'prop-types';
-import { ListItem } from '../ListItem/ListItem';
-// import { deleteContact } from "../../redux/contactsSlice";
-import { List, Item } from './ContactList.styled';
+import { ContactItem } from '../ListItem/ListItem';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "redux/operations";
-import { visibleContacts} from "redux/selectors";
+import { visibleContacts } from "redux/selectors";
+import { ListItem,UnorderedList} from '@chakra-ui/react'
 
 
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(visibleContacts);
+  
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
-        <List>{contacts.map((contact) => (
-                <Item key={contact.id}> {
-                  <ListItem contact={contact}/>}
-                </Item>
+        <UnorderedList p='4'>{contacts.map((contact) => (
+                <ListItem key={contact.id}> {
+                  <ContactItem contact={contact}/>}
+                </ListItem>
               ))
             }
-        </List>
+      </UnorderedList>  
         );
     
 }

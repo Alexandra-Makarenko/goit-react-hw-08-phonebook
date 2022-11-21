@@ -1,25 +1,26 @@
 import PropTypes from 'prop-types';
 import {deleteContact } from "redux/operations";
 import { useDispatch } from "react-redux";
-import { Button } from '../ContactList/ContactList.styled';
+import { Text, Button } from '@chakra-ui/react'
 
 
-export const ListItem = ({ contact: { name, number,id } }) => {
+export const ContactItem = ({ contact: { name, number,id } }) => {
   const dispatch = useDispatch();
   const onDeleteContact = () => dispatch(deleteContact(id));
 
   
   return (
-    <div>{name} {number} {id}
-      <Button
+    <div>
+       <Text as='samp'>{name} {number}</Text>      
+      <Button  ml='2' colorScheme='teal' size='xs'
           type="button"
           onClick={onDeleteContact}
-        >Удалить</Button>
+        >Delete</Button>
     </div>
   );
 };
 
-ListItem.propTypes = {
+ContactItem.propTypes = {
     contact: PropTypes.shape({
         name: PropTypes.string.isRequired,
         number:PropTypes.string.isRequired,

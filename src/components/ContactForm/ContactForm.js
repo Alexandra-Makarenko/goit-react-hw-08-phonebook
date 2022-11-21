@@ -1,9 +1,12 @@
 
 import { useDispatch,useSelector } from "react-redux";
-import { Label, Input, Form } from './ContactForm.styled';
+import { Form } from './ContactForm.styled';
 import { addContact } from "redux/operations";
 import { selectContacts } from "redux/selectors";
 import Notiflix from 'notiflix';
+import { FormLabel, Input, Button} from '@chakra-ui/react'
+
+
 export const ContactForm = () => {
   
   const dispatch = useDispatch();
@@ -21,7 +24,7 @@ export const ContactForm = () => {
 
   return (
     <Form  onSubmit={handleSubmit}>
-      <Label>
+      <FormLabel>
         Name
         <Input
          type="text"
@@ -31,8 +34,8 @@ export const ContactForm = () => {
           required
           
           />
-      </Label>
-      <Label>
+      </FormLabel>
+      <FormLabel>
         Phone
         <Input
          type="tel"
@@ -42,8 +45,8 @@ export const ContactForm = () => {
           required
          
           />
-      </Label>
-      <button type="submit">Add contact</button>
+      </FormLabel>
+      <Button colorScheme='teal' type="submit">Add contact</Button>
     </Form>
   );
 

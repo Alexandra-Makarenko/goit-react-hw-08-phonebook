@@ -6,6 +6,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from '../hooks/useAuth';
+import { Progress  } from '@chakra-ui/react'
+
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -21,7 +23,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Progress size='xs' isIndeterminate />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -48,41 +50,6 @@ export const App = () => {
     </Routes>
   );
 };
-
-
-
-// import {ContactForm} from './ContactForm/ContactForm'
-// import { Filter } from './Filter/Filter'
-// import { Layout } from './Layout/Layout'
-// import {UserMenu} from './UserMenu/UserMenu'
-// import { ContactList } from './ContactList/ContactList'
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { fetchContacts } from "redux/operations";
-// import { selectError, selectIsLoading } from "redux/selectors";
-
-
-// export const App = () => {
-//   const dispatch = useDispatch();
-//   const isLoading = useSelector(selectIsLoading);
-//   const error = useSelector(selectError);
-
-//   useEffect(() => {
-//     dispatch(fetchContacts());
-//   }, [dispatch]);
-
-//   return (
-//     <Layout>
-//       <UserMenu/>
-//       <h1>Phonebook</h1>
-//               <ContactForm />
-//               <h2>Contacts</h2>
-//               <Filter />
-//       {isLoading && !error && <b>Request in progress...</b>}
-//       <ContactList />
-//     </Layout>
-//   );
-// };
 
 
 
