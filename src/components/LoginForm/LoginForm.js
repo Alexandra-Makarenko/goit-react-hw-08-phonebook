@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { FormLabel, Input, Button, Container } from '@chakra-ui/react'
 
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -13,8 +14,7 @@ export const LoginForm = () => {
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
-    );
-    form.reset();
+    )
   };
 
   return (

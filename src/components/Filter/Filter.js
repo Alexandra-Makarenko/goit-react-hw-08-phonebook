@@ -1,7 +1,7 @@
 // import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import { setFilter } from "../../redux/filterSlice";
-import { Input } from '../ContactForm/ContactForm.styled'
+import { Input,FormLabel} from '@chakra-ui/react'
 export const Filter = () => {
 
   const dispatch = useDispatch();
@@ -11,9 +11,9 @@ export const Filter = () => {
     dispatch(setFilter(query));
   };
 
-  return (<label>
+  return (<FormLabel>
     Find
     <Input type="text" onChange={onChange} />
-  </label>)
+  </FormLabel>)
 };
 

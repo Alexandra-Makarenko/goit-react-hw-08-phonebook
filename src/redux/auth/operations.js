@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import Notiflix from 'notiflix';
+
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
@@ -24,8 +26,10 @@ export const register = createAsyncThunk(
       const res = await axios.post('/users/signup', credentials);
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
+      Notiflix.Notify.success('Welcome!')
       return res.data;
     } catch (error) {
+      Notiflix.Notify.failure('Username, Email or Password is not unique')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,8 +46,10 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', credentials);
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
+      Notiflix.Notify.success('Welcome!')
       return res.data;
     } catch (error) {
+      Notiflix.Notify.failure('Invalid Email or Password')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -82,7 +88,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/me');
+      const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
