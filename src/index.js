@@ -18,7 +18,7 @@ const theme = extendTheme({ colors })
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/goit-react-hw-05-movies-1/">
+      <BrowserRouter basename="/goit-react-hw-08-phonebook/">
         <ChakraProvider theme={theme}>
           <App />
           </ChakraProvider>
